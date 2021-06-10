@@ -14,6 +14,10 @@
       <v-btn color="blue darken-1" light @click="goTo(`/about/${book.id}`)">
         Ver sobre
       </v-btn>
+      <v-btn color="blue darken-1" light v-on:click="deleteBook" href="/home">
+        Excluir
+      </v-btn>
+
 
       <v-spacer></v-spacer>
 
@@ -37,6 +41,7 @@
 </template>
 
 <script>
+import api from '../services/api'
 export default {
   name: "Book",
   props: {
@@ -53,6 +58,10 @@ export default {
   methods: {
     goTo(route) {
       this.$router.push(route);
+    },
+      async deleteBook(){
+      const response = await api.delete(`https://localhost:5001/api/Book/${this.book.id}`, this.book);
+      console.log(response);
     }
   }
 };
