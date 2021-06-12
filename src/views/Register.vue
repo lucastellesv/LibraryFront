@@ -142,16 +142,15 @@ export default {
             Gender: this.gender,
             Images: this.selectedImages
           };
-          const response = await api.post("https://localhost:5001/api/Book", book);
-          console.log(response);
+          await api.post("https://localhost:5001/api/Book", book);
           this.snackbarFailed = true;
           this.$router.push("/");
         } catch {
           this.snackbarFailed = true;
         }
-      } else {
-        console.log("Tem algo errado");
       }
+
+      
     },
     setImage() {
       this.images.map(image => {

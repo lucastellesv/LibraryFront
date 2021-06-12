@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" shaped max-width="420" dark>
+  <v-card class="mx-auto" shaped max-width="420">
     <v-img :src="book.images[0].url" height="440px"></v-img>
 
     <v-card-title>
@@ -12,12 +12,23 @@
 
     <v-card-actions>
       <v-btn color="blue darken-1" light @click="goTo(`/about/${book.id}`)">
-        Ver sobre
+        Sobre
       </v-btn>
-      <v-btn color="blue darken-1" light v-on:click="deleteBook" href="/home">
-        Excluir
-      </v-btn>
-
+      <v-dialog
+        v-model="dialog"
+        fullscreen
+        hide-overlay
+        transition="dialog-bottom-transition"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn color="blue darken-1" light v-bind="attrs" v-on="on"
+          class="botao-do-riao"
+          >
+            Excluir
+          </v-btn>
+        </template>
+        <DialogConfirm :book="book" @close="update"/>
+      </v-dialog>
 
       <v-spacer></v-spacer>
 
@@ -41,34 +52,41 @@
 </template>
 
 <script>
-import api from '../services/api'
+import DialogConfirm from "../components/DialogConfirm.vue";
 export default {
   name: "Book",
   props: {
-    book:{
+    book: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
-  data(){
+  components: {
+    DialogConfirm,
+  },
+  data() {
     return {
-      show: false
+      show: false,
+      dialog: false
     };
   },
   methods: {
     goTo(route) {
       this.$router.push(route);
     },
-      async deleteBook(){
-      const response = await api.delete(`https://localhost:5001/api/Book/${this.book.id}`, this.book);
-      console.log(response);
+    update(){
+      this.dialog=false
+      this.$emit("update")
     }
-  }
+  },
 };
 </script>
 
 <style>
-.mx-auto{
+.mx-auto {
   margin-top: 50px;
+}
+.botao-do-riao{
+  margin-left: 20px;
 }
 </style>

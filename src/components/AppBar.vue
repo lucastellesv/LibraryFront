@@ -51,15 +51,15 @@
 </template>
 
 <script>
+import api from '../services/api'
 export default {
   name: "AppBar",
-  created(){
-    this.$store.dispatch("getBooks").then(() =>{
+  created() {
+      this.Getbooks()
       this.books = this.$store.state.books;
-      this.$store.state.books.map(book => {
+      this.$store.state.books.map((book) => {
         this.items.push(book.title);
       });
-    });
   },
   data() {
     return {
@@ -71,9 +71,8 @@ export default {
   },
   methods: {
     searchBook() {
-      console.log(this.search);
       const searchedBook = this.books.find(
-        book => book.title.toLowerCase() == this.search.toLowerCase()
+        (book) => book.title.toLowerCase() == this.search.toLowerCase()
       );
       this.$router.push(`/about/${searchedBook.id}`);
     },
@@ -82,11 +81,15 @@ export default {
         this.$router.push("/");
       }
     },
+    async Getbooks() {
+      const response = await api.get("https://localhost:5001/api/Book");
+      this.books = response.data
+    },
   },
   computed: {
     searchedBooks() {
       return this.books.filter(
-        book => book.title.toLowerCase() == this.search.toLowerCase()
+        (book) => book.title.toLowerCase() == this.search.toLowerCase()
       );
     },
   },
@@ -99,3 +102,4 @@ export default {
   margin-left: 70px;
 }
 </style>
+

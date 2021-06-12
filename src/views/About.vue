@@ -23,12 +23,21 @@
 </template>
 
 <script>
+import api from '../services/api'
 export default {
   name: "About",
-  computed: {
-    book() {
-      const books = this.$store.state.books;
-      return books.find(book => book.id == this.$route.params.id);
+  created(){
+    this.Getbooks()
+  },
+  methods: {
+    async Getbooks() {
+      const response = await api.get(`https://localhost:5001/api/Book/${this.$route.params.id}`);
+      this.book = response.data
+    }
+  },
+  data(){
+    return{
+      book: Object
     }
   }
 };
