@@ -90,7 +90,7 @@
 </template>
 
 <script>
-import api from "../services/api";
+import api from "../../../services/api";
 
 export default {
   name: "Register",
@@ -142,9 +142,9 @@ export default {
             Gender: this.gender,
             Images: this.selectedImages
           };
-          await api.post("https://localhost:5001/api/Book", book);
+          await api.post("/api/Book", book);
           this.snackbarFailed = true;
-          this.$router.push("/");
+          this.$router.push("/home");
         } catch {
           this.snackbarFailed = true;
         }

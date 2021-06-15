@@ -1,6 +1,9 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
+import AuthRoutes from "./views/pages/Auth/routes";
+import AboutRoutes from './views/pages/About/routes'
+import HomeRoutes from "./views/pages/Home/routes";
+import RegisterRoutes from "./views/pages/Register/routes";
 
 Vue.use(Router);
 
@@ -8,23 +11,29 @@ export default new Router({
   mode: 'history',
   routes: [
     {
+      path: "/auth",
+      ...AuthRoutes,
+    },
+    {
       path: "/",
-      redirect: "/home"
+      redirect: "/auth"
     },
     {
       path: "/home",
-      name: "Home",
-      component: Home,
+      ...HomeRoutes,
     },
     {
       path: "/about/:id",
-      name: "About",
-      component: () => import("./views/About.vue"),
+      ...AboutRoutes,
     },
     {
       path: "/register",
-      name: "Register",
-      component: () => import("./views/Register.vue"),
+      ...RegisterRoutes,
     },
+    {
+      path: "/auth",
+      ...AuthRoutes,
+    }
   ],
 });
+

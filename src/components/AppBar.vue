@@ -29,6 +29,8 @@
       v-model="search"
       :loading="loading"
       :items="items"
+      item-text="title"
+      item-value="title"
       cache-items
       class="mx-4"
       flat
@@ -54,10 +56,9 @@
 import api from '../services/api'
 export default {
   name: "AppBar",
-  created() {
-      this.Getbooks()
-      this.books = this.$store.state.books;
-      this.$store.state.books.map((book) => {
+  async created() {
+      await this.Getbooks()
+      this.books.map((book) => {
         this.items.push(book.title);
       });
   },
@@ -71,26 +72,21 @@ export default {
   },
   methods: {
     searchBook() {
+      if (this.search != null){
       const searchedBook = this.books.find(
         (book) => book.title.toLowerCase() == this.search.toLowerCase()
       );
       this.$router.push(`/about/${searchedBook.id}`);
+      }
     },
     goToHome() {
       if (this.$route.name != "Home") {
-        this.$router.push("/");
+        this.$router.push("/home");
       }
     },
     async Getbooks() {
-      const response = await api.get("https://localhost:5001/api/Book");
+      const response = await api.get("/api/Book");
       this.books = response.data
-    },
-  },
-  computed: {
-    searchedBooks() {
-      return this.books.filter(
-        (book) => book.title.toLowerCase() == this.search.toLowerCase()
-      );
     },
   },
 };

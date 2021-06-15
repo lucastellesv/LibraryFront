@@ -2,16 +2,17 @@
   <div class="text-center">
     <v-sheet
       class="px-7 pt-7 pb-4 mx-auto text-center d-inline-block"
-      color="blue-grey darken-3"
-      
-    >
-      <div class="grey--text text--lighten-1 text-body-2 mb-4">
+      id="main-content"
+      color="white"
+      elevation="20"
+      >
+      <div class="black--text text-body-2 mb-4">
         Você tem certeza que quer deletar esse livro? (Essa alteração não pode
         ser desfeita)
       </div>
 
       <v-btn class="ma-1" color="grey" plain @click="close">
-        Cancel
+        Cancelar
       </v-btn>
 
       <v-btn class="ma-1" color="error" plain @click="deleteBook">
@@ -31,7 +32,7 @@ export default {
   methods: {
     deleteBook() {
         api.delete(
-        `https://localhost:5001/api/Book/${this.book.id}`
+        `/api/Book/${this.book.id}`
       ).then(() =>{
       this.$emit("close");
       })
@@ -42,3 +43,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+#main-content{
+  margin-top: 52vh;
+
+}
+</style>

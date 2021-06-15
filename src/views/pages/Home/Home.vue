@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import Book from "../components/Book";
-import api from '../services/api'
+import Book from "../../../components/Book.vue";
+import api from '../../../services/api'
 export default {
   name: "Home",
   created() {
@@ -18,7 +18,6 @@ export default {
   },
   data() {
     return {
-      page: 1,
       books: []
     };
   },
@@ -27,7 +26,7 @@ export default {
   },
   methods: {
     async Getbooks() {
-      const response = await api.get("https://localhost:5001/api/Book");
+      const response = await api.get("/api/Book");
       this.books = response.data
     }
   }

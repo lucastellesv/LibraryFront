@@ -23,15 +23,15 @@
 </template>
 
 <script>
-import api from '../services/api'
+import api from '../../../services/api'
 export default {
   name: "About",
   created(){
-    this.Getbooks()
+    this.Getbook()
   },
   methods: {
-    async Getbooks() {
-      const response = await api.get(`https://localhost:5001/api/Book/${this.$route.params.id}`);
+    async Getbook() {
+      const response = await api.get(`/api/Book/${this.$route.params.id}`);
       this.book = response.data
     }
   },
@@ -45,9 +45,9 @@ export default {
 
 <style>
 .image-carousel{
-  margin-top: 50px;
+  margin-top: 10vh;
 }
 .book-infos{
-  margin-top: 50px;
+  margin-top: 10vh;
 }
 </style>

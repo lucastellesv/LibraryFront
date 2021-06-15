@@ -22,7 +22,7 @@
       >
         <template v-slot:activator="{ on, attrs }">
           <v-btn color="blue darken-1" light v-bind="attrs" v-on="on"
-          class="botao-do-riao"
+          class="buttom-delete"
           >
             Excluir
           </v-btn>
@@ -84,9 +84,9 @@ export default {
 
 <style>
 .mx-auto {
-  margin-top: 50px;
+  margin-top: 5vh;
 }
-.botao-do-riao{
+.buttom-delete{
   margin-left: 20px;
 }
 </style>
