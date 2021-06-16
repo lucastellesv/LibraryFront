@@ -95,7 +95,7 @@ export default {
 <style>
 .subtitle {
   place-content: center;
-  margin-left: 70px;
+  margin-left: 5vw;
 }
 </style>
 

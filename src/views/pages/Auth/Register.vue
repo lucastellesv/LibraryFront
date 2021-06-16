@@ -126,7 +126,7 @@ export default {
     async register() {
       this.loading = true;
       const user = {
-        Id: this.currentUser.Id,
+        Id: null,
         Password: this.currentUser.password,
         Email: this.currentUser.email,
         UserName: this.currentUser.userName,
@@ -134,6 +134,7 @@ export default {
       await api.post("https://localhost:44310/User/register", user).then(() => {
         this.loading = false;
         this.snackbarSucess = true;
+        this.$emit('toLogin');
       });
     },
   },

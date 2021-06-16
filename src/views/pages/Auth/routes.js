@@ -9,7 +9,6 @@ const AuthRoutes = {
       component: Auth,
       meta: {
         requiresAuth: false,
-        requiresAdmin: false,
       },
     },
     { path: "*", redirect: "/auth" },

@@ -171,10 +171,11 @@ export default {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 30px;
   color: #252525;
+  margin-top: 10vh;
 
   padding: 15px;
 }
 .main-card{
-  margin-top: 50px;
+  margin-top: 50vh;
 }
 </style>

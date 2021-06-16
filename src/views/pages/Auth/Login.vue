@@ -71,7 +71,7 @@ import api from '../../../services/api'
 export default {
  name: "Login",
 
-
+  
   data: () => ({
 
     loading: false,
@@ -92,6 +92,7 @@ export default {
       if (this.validate()) {
         const user = {
           UserName: this.userName,
+          Email: this.userName,
           Password: this.password,
         };
 
@@ -99,12 +100,17 @@ export default {
 
         await api.post("https://localhost:44310/User/token", user)
           .then((result) => {
-            const user = JSON.stringify(result.user);
-            this.$store.commit("SET_LOGGED_USER", user);
-            this.$store.commit("SET_CURRENT_TOKEN", result.token);
-            this.$store.commit("SET_EXPIRES_TOKEN", result.validTo);
+            const user = JSON.stringify(result.data.user);
+            localStorage.removeItem("token");
+            localStorage.removeItem("expires");
+            localStorage.removeItem("user");
+            localStorage.setItem("token", result.data.token);
+            localStorage.setItem("expires", result.data.validTo);
+            localStorage.setItem("user", user);
             this.$router.push("/home");
             this.loading = false;
+            console.log(result)
+            
           })
           .catch(() => {
             this.error = true;

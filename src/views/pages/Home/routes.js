@@ -8,8 +8,7 @@ const HomeRoutes = {
       name: "Home",
       component: Home,
       meta: {
-        requiresAuth: false,
-        requiresAdmin: false,
+        requiresAuth: true,
       },
     },
   ],

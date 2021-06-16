@@ -8,8 +8,7 @@ const RegisterRoutes = {
       name: "Register",
       component: Register,
       meta: {
-        requiresAuth: false,
-        requiresAdmin: false,
+        requiresAuth: true,
       },
     },
   ],

@@ -8,8 +8,7 @@ const AboutRoutes = {
       name: "About",
       component: About,
       meta: {
-        requiresAuth: false,
-        requiresAdmin: false,
+        requiresAuth: true,
       },
     },
   ],

@@ -4,10 +4,12 @@ import AuthRoutes from "./views/pages/Auth/routes";
 import AboutRoutes from './views/pages/About/routes'
 import HomeRoutes from "./views/pages/Home/routes";
 import RegisterRoutes from "./views/pages/Register/routes";
+import moment from 'moment';
+
 
 Vue.use(Router);
 
-export default new Router({
+const route = new Router({
   mode: 'history',
   routes: [
     {
@@ -36,4 +38,31 @@ export default new Router({
     }
   ],
 });
+
+route.beforeEach((to, from, next) => {
+  let Token = localStorage.getItem("token");
+  let ExpiresToken = localStorage.getItem("expires");
+  console.log(localStorage.getItem("token"))
+  console.log(ExpiresToken)
+
+  if(to.meta.requiresAuth){
+    if(Token){
+      if(moment().isBefore(moment(ExpiresToken)))
+      {
+        next();
+      } else {
+        if(from.path != "/auth"){
+        next('/auth');
+      }
+      alert("Acesso negado")
+      }
+    }else {
+      next('/auth');
+    }
+  }else {
+    next();
+  }
+})
+
+export default route;
 
