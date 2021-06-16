@@ -22,6 +22,10 @@
               <v-text-field
                 v-model="currentUser.email"
                 @keydown.enter="register"
+                :rules="[
+                  (v) => !!v || 'E-mail requerido',
+                  (v) => /.+@.+\..+/.test(v) || 'E-mail inválido',
+                ]"
                 color="primary"
                 label="Email..."
                 prepend-icon="mdi-account"
@@ -95,9 +99,9 @@ export default {
   props: {
     user: Object,
   },
-  created(){
+  created() {
     if (this.user) {
-      this.currentUser = this.user
+      this.currentUser = this.user;
     }
   },
 
@@ -134,7 +138,7 @@ export default {
       await api.post("https://localhost:44310/User/register", user).then(() => {
         this.loading = false;
         this.snackbarSucess = true;
-        this.$emit('toLogin');
+        this.$emit("toLogin");
       });
     },
   },

@@ -24,7 +24,6 @@ export default new Vuex.Store({
     SET_CURRENT_TOKEN(state, payload) {
       localStorage.removeItem("token");
       localStorage.setItem("token", payload);
-      console.log(localStorage.getItem("token"))
       let d = new Date("2021-12-17T03:24:00").toUTCString();
       document.cookie = "access_token=" + payload + ";" + d + ";path=/";
       state.token = payload;

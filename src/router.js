@@ -42,8 +42,6 @@ const route = new Router({
 route.beforeEach((to, from, next) => {
   let Token = localStorage.getItem("token");
   let ExpiresToken = localStorage.getItem("expires");
-  console.log(localStorage.getItem("token"))
-  console.log(ExpiresToken)
 
   if(to.meta.requiresAuth){
     if(Token){

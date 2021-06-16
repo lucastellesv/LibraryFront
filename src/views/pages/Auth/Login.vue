@@ -32,7 +32,9 @@
                 type="password"
               />
             </v-form>
-
+            <a @click="$router.push({ name: 'ForgotPassword' })">
+              <p>Esqueci minha senha</p>
+            </a>
             <v-btn
               :disabled="!valid"
               large
@@ -109,7 +111,6 @@ export default {
             localStorage.setItem("user", user);
             this.$router.push("/home");
             this.loading = false;
-            console.log(result)
             
           })
           .catch(() => {
