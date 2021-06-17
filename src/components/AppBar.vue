@@ -86,6 +86,7 @@ export default {
     },
     async Getbooks() {
       const response = await api.get("/api/Book");
+      console.log(response);
       this.books = response.data
     },
   },

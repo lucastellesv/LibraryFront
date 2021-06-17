@@ -1,6 +1,6 @@
 <template>
   <v-card class="mx-auto" shaped max-width="420">
-    <v-img :src="book.images[0].url" height="440px"></v-img>
+    <v-img :src="ShowImage(book.images[0].url)" height="440px"></v-img>
 
     <v-card-title>
       {{ book.title }}
@@ -77,7 +77,11 @@ export default {
     update(){
       this.dialog=false
       this.$emit("update")
-    }
+    },
+    ShowImage(Url) {
+      console.log(Url)
+      return "https://localhost:44310/" + Url;
+    },
   },
 };
 </script>

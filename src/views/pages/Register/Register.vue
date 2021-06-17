@@ -35,7 +35,7 @@
               <v-text-field
                 prepend-icon="mdi-alphabetical-variant"
                 name="language"
-                label="Lingua"
+                label="Lingua do livro"
                 type="text"
                 v-model="language"
                 :rules="languageRules"
@@ -115,8 +115,8 @@ export default {
       description: "",
       descriptionRules: [
         v => !!v || "A descrição do livro precisa ser informada.",
-        v =>
-          (v && v.length >= 15) || "A descrição precisa ter no minimo 15 caracteres."
+        v =>(v && v.length >= 20) || "A descrição precisa ter no minimo 20 caracteres.",
+        v =>(v && v.length <= 1200) || "A descrição pode conter no maximo 1200 caracteres."
       ],
       gender: "",
       genderRules: [
@@ -142,7 +142,7 @@ export default {
             Gender: this.gender,
             Images: this.selectedImages
           };
-          await api.post("/api/Book", book);
+          await api.post("https://localhost:44310/api/Book", book);
           this.snackbarFailed = true;
           this.$router.push("/home");
         } catch {
@@ -154,10 +154,11 @@ export default {
     },
     setImage() {
       this.images.map(image => {
+        console.log(image)
         var reader = new FileReader();
         reader.readAsDataURL(image);
         reader.onload = () => {
-          this.selectedImages.push({ Url: reader.result });
+          this.selectedImages.push({ Url: reader.result, FileExtension: image.type.split("/")[1]});
         };
       });
     }
