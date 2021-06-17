@@ -32,17 +32,15 @@ export default {
   name: "About",
   created() {
     this.Getbook();
-    console.log(this.book)
   },
   methods: {
     async Getbook() {
       const response = await api.get(
-        `https://localhost:44310/api/Book/${this.$route.params.id}`
+        `/api/Book/${this.$route.params.id}`
       );
       this.book = response.data;
     },
     ShowImage(Url) {
-      console.log(Url)
       return "https://localhost:44310/" + Url;
     },
   },

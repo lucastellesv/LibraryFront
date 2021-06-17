@@ -79,7 +79,6 @@ export default {
       this.$emit("update")
     },
     ShowImage(Url) {
-      console.log(Url)
       return "https://localhost:44310/" + Url;
     },
   },

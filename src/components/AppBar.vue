@@ -73,8 +73,8 @@ export default {
   methods: {
     searchBook() {
       if (this.search != null){
-      const searchedBook = this.books.find(
-        (book) => book.title.toLowerCase() == this.search.toLowerCase()
+        const searchedBook = this.books.find(
+          (book) => book.title.toLowerCase() == this.search.toLowerCase()
       );
       this.$router.push(`/about/${searchedBook.id}`);
       }
@@ -86,7 +86,6 @@ export default {
     },
     async Getbooks() {
       const response = await api.get("/api/Book");
-      console.log(response);
       this.books = response.data
     },
   },

@@ -183,7 +183,6 @@ export default {
           .post("https://localhost:44310/User/forgot-password", user)
           .then((response) => {
             this.userId = response.data.userId;
-            console.log(response)
             this.loading = false;
             this.step++;
           })
@@ -220,7 +219,6 @@ export default {
           NewPassword: this.newPassword,
           Code: parseInt(this.pin),
         };
-        console.log(this.userId)
         api
           .post("https://localhost:44310/User/forgot-password/reset", data)
           .then(() => {

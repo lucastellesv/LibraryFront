@@ -142,7 +142,7 @@ export default {
             Gender: this.gender,
             Images: this.selectedImages
           };
-          await api.post("https://localhost:44310/api/Book", book);
+          await api.post("/api/Book", book);
           this.snackbarFailed = true;
           this.$router.push("/home");
         } catch {
@@ -154,7 +154,6 @@ export default {
     },
     setImage() {
       this.images.map(image => {
-        console.log(image)
         var reader = new FileReader();
         reader.readAsDataURL(image);
         reader.onload = () => {

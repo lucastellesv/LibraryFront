@@ -28,7 +28,7 @@ export default {
     async Getbooks() {
       const response = await api.get("https://localhost:44310/api/Book");
       this.books = response.data
-    }
+    },
   }
 };
 </script>

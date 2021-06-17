@@ -111,6 +111,7 @@ export default {
             localStorage.setItem("user", user);
             this.$router.push("/home");
             this.loading = false;
+
             
           })
           .catch(() => {
