@@ -49,6 +49,17 @@
         <v-icon class="search-icon"> mdi-magnify </v-icon>
       </v-btn>
     </v-autocomplete>
+        <v-btn
+      class="register-button"
+      fab
+      dark
+      color="indigo darken-2"
+      :loading="loading"
+      :disabled="loading"
+      @click="Exit"
+    >
+      <v-icon  dark> mdi-exit-to-app </v-icon>
+    </v-btn>
   </v-app-bar>
 </template>
 
@@ -88,6 +99,10 @@ export default {
       const response = await api.get("/api/Book");
       this.books = response.data
     },
+    Exit(){
+      this.$router.push("/auth");
+      localStorage.clear();
+    }
   },
 };
 </script>
