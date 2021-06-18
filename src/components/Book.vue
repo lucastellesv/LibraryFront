@@ -56,6 +56,7 @@ import DialogConfirm from "../components/DialogConfirm.vue";
 export default {
   name: "Book",
   props: {
+
     book: {
       type: Object,
       required: true,
@@ -79,9 +80,10 @@ export default {
       this.$emit("update")
     },
     ShowImage(Url) {
-      return "https://localhost:44310/" + Url;
+      return  "https://localhost:44310/" + Url;
     },
   },
+
 };
 </script>
 

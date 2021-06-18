@@ -14,6 +14,7 @@
           v-for="(image, i) in book.images"
           :key="i"
           :src="ShowImage(image.url)"
+          
         ></v-carousel-item>
       </v-carousel>
     </v-card>
@@ -32,6 +33,7 @@ export default {
   name: "About",
   created() {
     this.Getbook();
+    
   },
   methods: {
     async Getbook() {
@@ -39,8 +41,10 @@ export default {
         `/api/Book/${this.$route.params.id}`
       );
       this.book = response.data;
+      console.log(response.data)
     },
     ShowImage(Url) {
+      console.log(Url)
       return "https://localhost:44310/" + Url;
     },
   },

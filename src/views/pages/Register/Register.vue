@@ -68,7 +68,7 @@
                 solo
                 v-model="images"
                 :rules="imageRules"
-                @change="setImage($event)"
+                @change="setImage"
                 label="Imagem"
                 filled
                 prepend-icon="mdi-camera"
@@ -142,7 +142,8 @@ export default {
             Gender: this.gender,
             Images: this.selectedImages
           };
-          await api.post("/api/Book", book);
+          console.log(book)
+           await api.post("/api/Book", book);
           this.snackbarFailed = true;
           this.$router.push("/home");
         } catch {
@@ -153,11 +154,12 @@ export default {
       
     },
     setImage() {
-      this.images.map(image => {
+      this.images.map(
+        image => {
         var reader = new FileReader();
         reader.readAsDataURL(image);
-        reader.onload = () => {
-          this.selectedImages.push({ Url: reader.result, FileExtension: image.type.split("/")[1]});
+        reader.onload = async (e) => {
+          this.selectedImages.push({ Url: e.target.result, FileExtension: image.type.split("/")[1]});
         };
       });
     }
